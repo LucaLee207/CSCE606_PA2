@@ -1,14 +1,104 @@
-<p style="color: green"><%= notice %></p>
+
+
+<style>
+a{
+  text-decoration:none;
+  color:white;
+
+}
+.a_customer_1 {
+  
+  color:black;
+}
+.a_customer_2 {
+  text-decoration:underline;
+  color:purple;
+}
+#movie {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 70%;
+}
+
+#movie td, #customers th {
+  border: 0.5px solid #ddd;
+  padding: 8px;
+}
+
+#movie th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #A25772;
+  color: white;
+}
+#sort_asc{
+  background-color:#F1FADA;
+
+}
+#sort_desc{
+  background-color:#9AD0C2;
+}
+</style>
+
+<center>
 
 <h1>Movies</h1>
-
+<p style="color: green"><%= notice %></p>
+<br>
 <div id="movies">
-  <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
-  <% end %>
-</div>
+<table id="movie", style="text-align:center">
 
-<%= link_to "New movie", new_movie_path %>
+    <tr style="background-color:#265073 ;color:white; text-align:center">
+      <td><%= up_down_triangle(sort: "title")%> <%= sort_link(sort: "title", label: "Title")%>  </td>
+      <td><%= up_down_triangle(sort: "rating")%><%= sort_link(sort: "rating", label: "Rating")%>  </td>
+      <td><%= up_down_triangle(sort: "release_date")%><%= sort_link(sort: "release_date", label: "Release Date") %> </th> 
+      <td>Show</td>
+
+  </tr>
+    <% @movies.each do |movie| %>
+      
+     <tr>
+      <% if params[:sort] == "title"%>
+        <%if params[:direction] == "asc"%>
+          <td id = sort_asc><%= movie.title%> </td>
+        <%else%>
+          <td id = sort_desc><%= movie.title%> </td>
+        <%end%>
+        <td><%= movie.rating%></td>
+        <td><%= movie.release_date%></td>
+
+      <% elsif params[:sort] == "rating"%>
+        <td><%= movie.title%></td>
+        <%if params[:direction] == "asc"%>
+          <td id = sort_asc><%= movie.rating%> </td>
+        <%else%>
+          <td id = sort_desc><%= movie.rating%> </td>
+        <%end%>
+        <td><%= movie.release_date%></td>
+
+      <% elsif params[:sort] == "release_date"%>
+        <td ><%= movie.title%></td>
+        <td><%= movie.rating%></td>
+        <%if params[:direction] == "asc"%>
+          <td id = sort_asc><%= movie.release_date%> </td>
+        <%else%>
+          <td id = sort_desc><%= movie.release_date%> </td>
+        <%end%>
+      
+      <% else %>
+        <td ><%= movie.title%></td>
+        <td><%= movie.rating%></td>
+        <td><%= movie.release_date%></td>
+      <% end%>
+      <td style=><%= link_to("ⓘ", movie, class: "a_customer_1")%></td>
+     </tr>
+  <% end %>
+</table>
+<br>
+<%= link_to("New movie", new_movie_path, class: "a_customer_2")%>
+
+</center>
+
+
+<%store_session()%>

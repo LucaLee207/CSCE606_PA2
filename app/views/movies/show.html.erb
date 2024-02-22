@@ -1,10 +1,25 @@
+
+<center>
+<h1> Movie Information</h1>
 <p style="color: green"><%= notice %></p>
 
 <%= render @movie %>
+<style>
+.button {
+  transition-duration: 0.4s;
+}
 
+.button:hover {
+  background-color: red; 
+  color: white;
+}
+</style>
 <div>
-  <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
-  <%= link_to "Back to movies", movies_path %>
+  
+  <%= link_to "Edit this movie", edit_movie_path(@movie) %> 
+  |
+  <%= link_to "Back to movies", movies_path(sort: session[:sort], direction: session[:direction])  %>
 
-  <%= button_to "Destroy this movie", @movie, method: :delete %>
+  <%= button_to "Destroy this movie", @movie, method: :delete , class:"button"%>
 </div>
+</center>
