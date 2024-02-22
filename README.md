@@ -1,24 +1,14 @@
-# README
+# Heroku
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+My heroku application: https://rottenpotatoes-yt-302dbde26aac.herokuapp.com/
 
-Things you may want to cover:
+## solution
+I implemented my ascending sorting and descending sorting in my controller and helper.
+* use ```@movies = Movie.order("#{params[:sort]} #{params[:direction]}")``` to sort data with the params given
+* use ```sort_link()``` method in helper to create link and decide sorting in descending or ascending order.
+  
+To record the sorting order and params
+* use ```session[:sort]``` and ```session[:direction]``` to store the data
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
