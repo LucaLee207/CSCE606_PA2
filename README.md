@@ -2,6 +2,7 @@
 
 My heroku application: https://rottenpotatoes-yt-302dbde26aac.herokuapp.com/
 
+
 ## solution
 I implemented my ascending sorting and descending sorting in my controller and helper.
 * use ```@movies = Movie.order("#{params[:sort]} #{params[:direction]}")``` to sort data with the params given
